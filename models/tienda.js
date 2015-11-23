@@ -21,14 +21,6 @@ module.exports = function (sequelize, DataTypes){
 				len: [8, 15]
 			}
 		},
-		encargado:{
-			type: DataTypes.INTEGER,
-			allowNull: false,
-			references: {
-				model: 'empleado',
-				key: 'id'
-			}
-		},
 		status:{
 			type: DataTypes.BOOLEAN,
 			defaultValue: true
