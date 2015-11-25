@@ -1,11 +1,10 @@
 var models = require('../../models');
 
-exports.postDistribuidor = function(req, res, next){
-	models.distribuidor.create({
+exports.postTienda = function(req, res, next){
+	models.tienda.create({
 		nombre: req.body.nombre,
 		direccion: req.body.direccion,
 		telefono: req.body.telefono,
-		contacto: req.body.contacto,
 		status: true
 	}).then(function (res){
 		if(!res){
@@ -18,14 +17,14 @@ exports.postDistribuidor = function(req, res, next){
 			res.status(200);
 			res.json({
 				type: true,
-				data: "Distribuidor agregado exitosamente..."
+				data: "Tienda agregada exitosamente..."
 			});
 		};
 	});
 };
 
-exports.getDistribuidor = function(req, res, next){
-	models.distribuidor.findOne({
+exports.getTienda = function(req, res, next){
+	models.tienda.findOne({
 		where: {
 			id: req.params.id
 		}
@@ -34,7 +33,7 @@ exports.getDistribuidor = function(req, res, next){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "Distribuidor no encontrado: " + res
+				data: "Tienda no encontrada: " + res
 			});
 		}else{
 			res.status(200);
@@ -46,8 +45,8 @@ exports.getDistribuidor = function(req, res, next){
 	});
 };
 
-exports.putDistribuidor = function(req, res, next){
-	models.distribuidor.findOne({
+exports.putTienda = function(req, res, next){
+	models.tienda.findOne({
 		where: {
 			id: req.params.id
 		}
@@ -56,27 +55,26 @@ exports.putDistribuidor = function(req, res, next){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "Distribuidor no encontrado."
+				data: "Tienda no encontrada..."
 			})
 		}else{
 			res.update({
 				nombre: req.body.nombre,
 				direccion: req.body.direccion,
 				telefono: req.body.telefono,
-				contacto: req.body.contacto,
 				status: req.body.status
 			}).then(function (_res){
 				if(!_res){
 					res.status(500);
 					res.json({
 						type: false,
-						data: "Error al actualizar el Distribuidor: " + _res.nombre
+						data: "Error al actualizar la Tienda: " + _res.nombre
 					});
 				}else{
 					res.status(200);
 					res.json({
 						type: true,
-						data: "Distribuidor actualizado exitosamente ..."
+						data: "Tienda actualizada exitosamente ..."
 					});
 				};
 			});
@@ -84,8 +82,8 @@ exports.putDistribuidor = function(req, res, next){
 	});
 };
 
-exports.deleteDistribuidor = function (req, res, next){
-	models.distribuidor.findOne({
+exports.deleteTienda = function (req, res, next){
+	models.tienda.findOne({
 		where: {
 			id: req.body.id
 		}
@@ -94,7 +92,7 @@ exports.deleteDistribuidor = function (req, res, next){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "Distribuidor no encontrado."
+				data: "Tienda no encontrada."
 			})
 		}else{
 			res.update({
@@ -104,13 +102,13 @@ exports.deleteDistribuidor = function (req, res, next){
 					res.status(500);
 					res.json({
 						type: false,
-						data: "Error al eliminar el Distribuidor: " + _res.nombre
+						data: "Error al eliminar la Tienda: " + _res.nombre
 					});
 				}else{
 					res.status(200);
 					res.json({
 						type: true,
-						data: "Distribuidor Eliminado exitósamente ..."
+						data: "Tienda Eliminada exitósamente ..."
 					});
 				};
 			});
@@ -118,8 +116,8 @@ exports.deleteDistribuidor = function (req, res, next){
 	})
 };
 
-exports.getDistribuidores = function (req, res, next){
-	models.distribuidor.findAll({
+exports.getTiendas = function (req, res, next){
+	models.tienda.findAll({
 		where: {
 			status: true
 		}
@@ -128,7 +126,7 @@ exports.getDistribuidores = function (req, res, next){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "no se pudieron encontrar los Distribuidores: " + res
+				data: "no se pudieron encontrar las Tiendas: " + res
 			});
 		}else{
 			res.status(200);

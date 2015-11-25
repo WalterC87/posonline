@@ -1,11 +1,8 @@
 var models = require('../../models');
 
-exports.postDistribuidor = function(req, res, next){
-	models.distribuidor.create({
-		nombre: req.body.nombre,
-		direccion: req.body.direccion,
-		telefono: req.body.telefono,
-		contacto: req.body.contacto,
+exports.postTipoActividad= function(req, res, next){
+	models.tipoActividad.create({
+		descripcion: req.body.descripcion,
 		status: true
 	}).then(function (res){
 		if(!res){
@@ -18,14 +15,14 @@ exports.postDistribuidor = function(req, res, next){
 			res.status(200);
 			res.json({
 				type: true,
-				data: "Distribuidor agregado exitosamente..."
+				data: "Area de Empresa se Agrego exitosamente..."
 			});
 		};
 	});
 };
 
-exports.getDistribuidor = function(req, res, next){
-	models.distribuidor.findOne({
+exports.getTipoActividad = function(req, res, next){
+	models.tipoActividad.findOne({
 		where: {
 			id: req.params.id
 		}
@@ -34,7 +31,7 @@ exports.getDistribuidor = function(req, res, next){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "Distribuidor no encontrado: " + res
+				data: "Area de Empresa no encontrada: " + res
 			});
 		}else{
 			res.status(200);
@@ -46,8 +43,8 @@ exports.getDistribuidor = function(req, res, next){
 	});
 };
 
-exports.putDistribuidor = function(req, res, next){
-	models.distribuidor.findOne({
+exports.putTipoActividad = function(req, res, next){
+	models.tipoActividad.findOne({
 		where: {
 			id: req.params.id
 		}
@@ -56,27 +53,24 @@ exports.putDistribuidor = function(req, res, next){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "Distribuidor no encontrado."
+				data: "Area de Empresa no encontrado."
 			})
 		}else{
 			res.update({
-				nombre: req.body.nombre,
-				direccion: req.body.direccion,
-				telefono: req.body.telefono,
-				contacto: req.body.contacto,
+				descripcion: req.body.descripcion,
 				status: req.body.status
 			}).then(function (_res){
 				if(!_res){
 					res.status(500);
 					res.json({
 						type: false,
-						data: "Error al actualizar el Distribuidor: " + _res.nombre
+						data: "Error al actualizar Area de Empresa: " + _res.descripcion
 					});
 				}else{
 					res.status(200);
 					res.json({
 						type: true,
-						data: "Distribuidor actualizado exitosamente ..."
+						data: "Area de Empresa Actualizado exitosamente ..."
 					});
 				};
 			});
@@ -84,8 +78,8 @@ exports.putDistribuidor = function(req, res, next){
 	});
 };
 
-exports.deleteDistribuidor = function (req, res, next){
-	models.distribuidor.findOne({
+exports.deleteTipoActividad = function (req, res, next){
+	models.tipoActividad.findOne({
 		where: {
 			id: req.body.id
 		}
@@ -94,7 +88,7 @@ exports.deleteDistribuidor = function (req, res, next){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "Distribuidor no encontrado."
+				data: "Area de Empresa no encontrado."
 			})
 		}else{
 			res.update({
@@ -104,13 +98,13 @@ exports.deleteDistribuidor = function (req, res, next){
 					res.status(500);
 					res.json({
 						type: false,
-						data: "Error al eliminar el Distribuidor: " + _res.nombre
+						data: "Error al eliminar el Area de Empresa: " + _res.descripcion
 					});
 				}else{
 					res.status(200);
 					res.json({
 						type: true,
-						data: "Distribuidor Eliminado exitósamente ..."
+						data: "Area de Empresa Eliminado exitósamente ..."
 					});
 				};
 			});
@@ -118,8 +112,8 @@ exports.deleteDistribuidor = function (req, res, next){
 	})
 };
 
-exports.getDistribuidores = function (req, res, next){
-	models.distribuidor.findAll({
+exports.getTiposActividad = function (req, res, next){
+	models.tipoActividad.findAll({
 		where: {
 			status: true
 		}
@@ -128,7 +122,7 @@ exports.getDistribuidores = function (req, res, next){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "no se pudieron encontrar los Distribuidores: " + res
+				data: "no se pudieron encontrar las Areas de Empresa: " + res
 			});
 		}else{
 			res.status(200);
