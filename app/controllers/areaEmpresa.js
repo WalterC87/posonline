@@ -24,7 +24,7 @@ exports.postAreaEmpresa= function(req, res, next){
 exports.getAreaEmpresa = function(req, res, next){
 	models.areaEmpresa.findOne({
 		where: {
-			id: req.body.id
+			id: req.params.id
 		}
 	}).then(function (res){
 		if(!res){
@@ -46,7 +46,7 @@ exports.getAreaEmpresa = function(req, res, next){
 exports.putAreaEmpresa = function(req, res, next){
 	models.areaEmpresa.findOne({
 		where: {
-			id: req.body.id
+			id: req.params.id
 		}
 	}).then(function (res){
 		if(!res){
