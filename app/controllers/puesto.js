@@ -1,11 +1,8 @@
 var models = require('../../models');
 
-exports.postDistribuidor = function(req, res, next){
-	models.distribuidor.create({
-		nombre: req.body.nombre,
-		direccion: req.body.direccion,
-		telefono: req.body.telefono,
-		contacto: req.body.contacto,
+exports.postPuesto = function(req, res, next){
+	models.puesto.create({
+		descripcion: req.body.descripcion,
 		status: true
 	}).then(function (res){
 		if(!res){
@@ -18,14 +15,14 @@ exports.postDistribuidor = function(req, res, next){
 			res.status(200);
 			res.json({
 				type: true,
-				data: "Distribuidor agregado exitosamente..."
+				data: "Puesto Agreado exitosamente..."
 			});
 		};
 	});
 };
 
-exports.getDistribuidor = function(req, res, next){
-	models.distribuidor.findOne({
+exports.getPuesto = function(req, res, next){
+	models.puesto.findOne({
 		where: {
 			id: req.params.id
 		}
@@ -34,7 +31,7 @@ exports.getDistribuidor = function(req, res, next){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "Distribuidor no encontrado: " + res
+				data: "Puesto no encontrada: " + res
 			});
 		}else{
 			res.status(200);
@@ -46,8 +43,8 @@ exports.getDistribuidor = function(req, res, next){
 	});
 };
 
-exports.putDistribuidor = function(req, res, next){
-	models.distribuidor.findOne({
+exports.putPuesto = function(req, res, next){
+	models.puesto.findOne({
 		where: {
 			id: req.params.id
 		}
@@ -56,27 +53,24 @@ exports.putDistribuidor = function(req, res, next){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "Distribuidor no encontrado."
+				data: "Puesto no encontrado."
 			})
 		}else{
 			res.update({
-				nombre: req.body.nombre,
-				direccion: req.body.direccion,
-				telefono: req.body.telefono,
-				contacto: req.body.contacto,
+				descripcion: req.body.descripcion,
 				status: req.body.status
 			}).then(function (_res){
 				if(!_res){
 					res.status(500);
 					res.json({
 						type: false,
-						data: "Error al actualizar el Distribuidor: " + _res.nombre
+						data: "Error al actualizar Puesto: " + _res.descripcion
 					});
 				}else{
 					res.status(200);
 					res.json({
 						type: true,
-						data: "Distribuidor actualizado exitosamente ..."
+						data: "Puesto Actualizado exitosamente ..."
 					});
 				};
 			});
@@ -84,8 +78,8 @@ exports.putDistribuidor = function(req, res, next){
 	});
 };
 
-exports.deleteDistribuidor = function (req, res, next){
-	models.distribuidor.findOne({
+exports.deletePuesto = function (req, res, next){
+	models.puesto.findOne({
 		where: {
 			id: req.body.id
 		}
@@ -94,7 +88,7 @@ exports.deleteDistribuidor = function (req, res, next){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "Distribuidor no encontrado."
+				data: "Puesto no encontrado."
 			})
 		}else{
 			res.update({
@@ -104,13 +98,13 @@ exports.deleteDistribuidor = function (req, res, next){
 					res.status(500);
 					res.json({
 						type: false,
-						data: "Error al eliminar el Distribuidor: " + _res.nombre
+						data: "Error al eliminar el Puesto: " + _res.descripcion
 					});
 				}else{
 					res.status(200);
 					res.json({
 						type: true,
-						data: "Distribuidor Eliminado exitósamente ..."
+						data: "Puesto Eliminado exitósamente ..."
 					});
 				};
 			});
@@ -118,8 +112,8 @@ exports.deleteDistribuidor = function (req, res, next){
 	})
 };
 
-exports.getDistribuidores = function (req, res, next){
-	models.distribuidor.findAll({
+exports.getPuestos = function (req, res, next){
+	models.puesto.findAll({
 		where: {
 			status: true
 		}
@@ -128,7 +122,7 @@ exports.getDistribuidores = function (req, res, next){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "no se pudieron encontrar los Distribuidores: " + res
+				data: "no se pudieron encontrar los Puestos: " + res
 			});
 		}else{
 			res.status(200);
