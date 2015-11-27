@@ -4,12 +4,12 @@ exports.postPuesto = function(req, res, next){
 	models.puesto.create({
 		descripcion: req.body.descripcion,
 		status: true
-	}).then(function (res){
-		if(!res){
+	}).then(function (puesto){
+		if(!puesto){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "Ha ocurrido un error: " + res
+				data: "Ha ocurrido un error: " + puesto
 			});
 		}else{
 			res.status(200);
@@ -26,18 +26,18 @@ exports.getPuesto = function(req, res, next){
 		where: {
 			id: req.params.id
 		}
-	}).then(function (res){
-		if(!res){
+	}).then(function (puesto){
+		if(!puesto){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "Puesto no encontrada: " + res
+				data: "Puesto no encontrada: " + puesto
 			});
 		}else{
 			res.status(200);
 			res.json({
 				type: true,
-				data: res
+				data: puesto
 			});
 		};
 	});
@@ -48,23 +48,23 @@ exports.putPuesto = function(req, res, next){
 		where: {
 			id: req.params.id
 		}
-	}).then(function (res){
-		if(!res){
+	}).then(function (puesto){
+		if(!puesto){
 			res.status(500);
 			res.json({
 				type: false,
 				data: "Puesto no encontrado."
 			})
 		}else{
-			res.update({
+			puesto.update({
 				descripcion: req.body.descripcion,
 				status: req.body.status
-			}).then(function (_res){
-				if(!_res){
+			}).then(function (puesto){
+				if(!puesto){
 					res.status(500);
 					res.json({
 						type: false,
-						data: "Error al actualizar Puesto: " + _res.descripcion
+						data: "Error al actualizar Puesto: " + puesto.descripcion
 					});
 				}else{
 					res.status(200);
@@ -83,22 +83,22 @@ exports.deletePuesto = function (req, res, next){
 		where: {
 			id: req.body.id
 		}
-	}).then(function (res){
-		if(!res){
+	}).then(function (puesto){
+		if(!puesto){
 			res.status(500);
 			res.json({
 				type: false,
 				data: "Puesto no encontrado."
 			})
 		}else{
-			res.update({
+			puesto.update({
 				status: false
-			}).then(function (_res){
-				if(!_res){
+			}).then(function (puesto){
+				if(!puesto){
 					res.status(500);
 					res.json({
 						type: false,
-						data: "Error al eliminar el Puesto: " + _res.descripcion
+						data: "Error al eliminar el Puesto: " + puesto.descripcion
 					});
 				}else{
 					res.status(200);
@@ -117,18 +117,18 @@ exports.getPuestos = function (req, res, next){
 		where: {
 			status: true
 		}
-	}).then(function (res){
-		if(!res){
+	}).then(function (puestos){
+		if(!puestos){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "no se pudieron encontrar los Puestos: " + res
+				data: "no se pudieron encontrar los Puestos: " + puestos
 			});
 		}else{
 			res.status(200);
 			res.json({
 				type: true,
-				data: res
+				data: puestos
 			});
 		};
 	});
