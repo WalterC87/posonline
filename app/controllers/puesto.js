@@ -1,9 +1,9 @@
-var models = require('../../models');
+	var models = require('../../models');
 
 exports.postPuesto = function(req, res, next){
 	models.puesto.create({
 		descripcion: req.body.descripcion,
-		status: true
+		status: 1
 	}).then(function (puesto){
 		if(!puesto){
 			res.status(500);
@@ -115,7 +115,7 @@ exports.deletePuesto = function (req, res, next){
 exports.getPuestos = function (req, res, next){
 	models.puesto.findAll({
 		where: {
-			status: true
+			status: 1
 		}
 	}).then(function (puestos){
 		if(!puestos){

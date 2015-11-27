@@ -115,20 +115,20 @@ exports.deleteAreaEmpresa = function (req, res, next){
 exports.getAreasEmpresa = function (req, res, next){
 	models.areaEmpresa.findAll({
 		where: {
-			status: true
+			status: 1
 		}
-	}).then(function (res){
-		if(!res){
+	}).then(function (areasEmpresas){
+		if(!areasEmpresas){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "no se pudieron encontrar las Areas de Empresa: " + res
+				data: "no se pudieron encontrar las Areas de Empresa: " + areasEmpresas
 			});
 		}else{
 			res.status(200);
 			res.json({
 				type: true,
-				data: res
+				data: areasEmpresas
 			});
 		};
 	});

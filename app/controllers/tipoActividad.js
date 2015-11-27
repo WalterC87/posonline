@@ -115,20 +115,20 @@ exports.deleteTipoActividad = function (req, res, next){
 exports.getTiposActividad = function (req, res, next){
 	models.tipoActividad.findAll({
 		where: {
-			status: true
+			status: 1
 		}
-	}).then(function (res){
-		if(!res){
+	}).then(function (tiposActividad){
+		if(!tiposActividad){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "no se pudieron encontrar las Areas de Empresa: " + res
+				data: "no se pudieron encontrar las Areas de Empresa: " + tiposActividad
 			});
 		}else{
 			res.status(200);
 			res.json({
 				type: true,
-				data: res
+				data: tiposActividad
 			});
 		};
 	});

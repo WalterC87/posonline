@@ -12,7 +12,7 @@ module.exports = function (sequelize, DataTypes){
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
-				model: 'categoria_producto',
+				model: 'categoriaProducto',
 				key: 'id'
 			}
 		},
@@ -37,6 +37,10 @@ module.exports = function (sequelize, DataTypes){
 			validate: {
 				isDate: true
 			}
+		},
+		status:{
+			type: DataTypes.BOOLEAN,
+			defaultValue: true
 		}
 	},{
 		freezeTableName: true,

@@ -133,7 +133,7 @@ exports.deleteProducto = function (req, res, next){
 exports.getProductos = function (req, res, next){
 	models.producto.findAll({
 		where: {
-			status: true
+			status: 1
 		},
 		include: [
 			{
@@ -145,18 +145,18 @@ exports.getProductos = function (req, res, next){
 				as: 'categoriaProducto'
 			}
 		]
-	}).then(function (res){
-		if(!res){
+	}).then(function (productos){
+		if(!productos){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "no se pudieron encontrar los Productos: " + res
+				data: "no se pudieron encontrar los Productos: " + productos
 			});
 		}else{
 			res.status(200);
 			res.json({
 				type: true,
-				data: res
+				data: productos
 			});
 		};
 	});

@@ -178,18 +178,18 @@ exports.getEmpleados = function (req, res, next){
 				as: 'tienda'
 			}
 		]
-	}).then(function (res){
-		if(!res){
+	}).then(function (empleados){
+		if(!empleados){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "no se pudieron encontrar los Empleados: " + res
+				data: "no se pudieron encontrar los Empleados: " + empleados
 			});
 		}else{
 			res.status(200);
 			res.json({
 				type: true,
-				data: res
+				data: empleados
 			});
 		};
 	});

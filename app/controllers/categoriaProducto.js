@@ -115,20 +115,20 @@ exports.deleteCategoriaProducto = function (req, res, next){
 exports.getCategoriasProducto = function (req, res, next){
 	models.categoriaProducto.findAll({
 		where: {
-			status: true
+			status: 1
 		}
-	}).then(function (res){
-		if(!res){
+	}).then(function (categorias){
+		if(!categorias){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "no se pudieron encontrar las Categorias: " + res
+				data: "no se pudieron encontrar las Categorias: " + categorias
 			});
 		}else{
 			res.status(200);
 			res.json({
 				type: true,
-				data: res
+				data: categorias
 			});
 		};
 	});

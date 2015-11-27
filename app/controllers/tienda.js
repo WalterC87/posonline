@@ -119,20 +119,20 @@ exports.deleteTienda = function (req, res, next){
 exports.getTiendas = function (req, res, next){
 	models.tienda.findAll({
 		where: {
-			status: true
+			status: 1
 		}
-	}).then(function (res){
-		if(!res){
+	}).then(function (tiendas){
+		if(!tiendas){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "no se pudieron encontrar las Tiendas: " + res
+				data: "no se pudieron encontrar las Tiendas: " + tiendas
 			});
 		}else{
 			res.status(200);
 			res.json({
 				type: true,
-				data: res
+				data: tiendas
 			});
 		};
 	});

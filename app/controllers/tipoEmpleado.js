@@ -115,20 +115,20 @@ exports.deleteTipoEmpleado = function (req, res, next){
 exports.getTiposEmpleado = function (req, res, next){
 	models.tipoEmpleado.findAll({
 		where: {
-			status: true
+			status: 1
 		}
-	}).then(function (res){
-		if(!res){
+	}).then(function (tiposEmpleado){
+		if(!tiposEmpleado){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "no se pudieron encontrar los Tipos de Empleado: " + res
+				data: "no se pudieron encontrar los Tipos de Empleado: " + productos
 			});
 		}else{
 			res.status(200);
 			res.json({
 				type: true,
-				data: res
+				data: tiposEmpleado
 			});
 		};
 	});

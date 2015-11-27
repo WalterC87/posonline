@@ -121,20 +121,20 @@ exports.deleteDistribuidor = function (req, res, next){
 exports.getDistribuidores = function (req, res, next){
 	models.distribuidor.findAll({
 		where: {
-			status: true
+			status: 1
 		}
-	}).then(function (res){
-		if(!res){
+	}).then(function (distribuidores){
+		if(!distribuidores){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "no se pudieron encontrar los Distribuidores: " + res
+				data: "no se pudieron encontrar los Distribuidores: " + distribuidores
 			});
 		}else{
 			res.status(200);
 			res.json({
 				type: true,
-				data: res
+				data: distribuidores
 			});
 		};
 	});
