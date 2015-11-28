@@ -16,25 +16,12 @@ module.exports = function (sequelize, DataTypes){
 				key: 'id'
 			}
 		},
-		nombreCliente:{
-			type: DataTypes.STRING,
+		idCliente:{
+			type: DataTypes.INTEGER,
 			allowNull: false,
-			validate:{
-				len: [20, 150]
-			}
-		},
-		NitCliente:{
-			type: DataTypes.STRING,
-			allowNull: false,
-			validate:{
-				len: [20, 150]
-			}
-		},
-		direccionCliente:{
-			type: DataTypes.STRING,
-			allowNull: false,
-			validate:{
-				len: [20, 150]
+			references: {
+				model: 'cliente',
+				key: 'id'
 			}
 		},
 		fechaEmision:{
