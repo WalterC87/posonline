@@ -19,7 +19,11 @@ var client = restify.createClient({
 server.use(restify.fullResponse());
 server.use(restify.bodyParser());
 
-// console.log(controllers.areaEmpresa); return false;
+// console.log(controllers.areaEmpresa); return false;.
+
+//Envio de Emails
+
+server.post("/sentEmail", controllers.mail.sentEmailRegister);
 
 //Areas Empresa
 server.get("/areasEmpresa", controllers.areaEmpresa.getAreasEmpresa);
