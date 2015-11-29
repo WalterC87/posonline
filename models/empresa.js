@@ -1,7 +1,6 @@
 module.exports = function (sequelize, DataTypes){
 	var empresa = sequelize.define("empresa", {
-		
-		NitEmpresa:{
+		nitEmpresa:{
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate:{
@@ -43,11 +42,11 @@ module.exports = function (sequelize, DataTypes){
 				len: [20, 50]
 			}
 		},
-			idResolucion:{
+		idResolucion:{
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
-				model: 'resolucionSat',
+				model: 'resolucion_sat',
 				key: 'id'
 			}
 		},

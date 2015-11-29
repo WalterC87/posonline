@@ -3,9 +3,9 @@ var models = require('../../models');
 exports.postTipoEmpleado = function(req, res, next){
 	models.tipoEmpleado.create({
 		descripcion: req.body.descripcion,
-		status: true
-	}).then(function (res){
-		if(!res){
+		status: 1
+	}).then(function (tipoEmpleado){
+		if(!tipoEmpleado){
 			res.status(500);
 			res.json({
 				type: false,
@@ -26,18 +26,18 @@ exports.getTipoEmpleado = function(req, res, next){
 		where: {
 			id: req.params.id
 		}
-	}).then(function (res){
-		if(!res){
+	}).then(function (tipoEmpleado){
+		if(!tipoEmpleado){
 			res.status(500);
 			res.json({
 				type: false,
-				data: "Tipo Empleado no encontrada: " + res
+				data: "Tipo Empleado no encontrada: " + tipoEmpleado
 			});
 		}else{
 			res.status(200);
 			res.json({
 				type: true,
-				data: res
+				data: tipoEmpleado
 			});
 		};
 	});
@@ -83,22 +83,22 @@ exports.deleteTipoEmpleado = function (req, res, next){
 		where: {
 			id: req.body.id
 		}
-	}).then(function (res){
-		if(!res){
+	}).then(function (tipoEmpleado){
+		if(!tipoEmpleado){
 			res.status(500);
 			res.json({
 				type: false,
 				data: "Tipo Empleado no encontrado."
 			})
 		}else{
-			res.update({
-				status: false
-			}).then(function (_res){
-				if(!_res){
+			tipoEmpleado.update({
+				status: 0
+			}).then(function (tipoEmpleado){
+				if(!tipoEmpleado){
 					res.status(500);
 					res.json({
 						type: false,
-						data: "Error al eliminar el Tipo Empleado: " + _res.descripcion
+						data: "Error al eliminar el Tipo Empleado: " + tipoEmpleado.descripcion
 					});
 				}else{
 					res.status(200);
